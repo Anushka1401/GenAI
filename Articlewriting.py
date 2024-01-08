@@ -9,12 +9,13 @@ def main():
     content = "I want you to write a short literature review on the topic " + notes
     if st.button("Generate Article"):
         with st.spinner("Generating Article..."):
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[{'role': 'system', 'content': 'You are a helpful assistant.'},
-                          {'role': 'user', 'content': content}],
+            response = openai.Completion.create(
+                engine="text-davinci-003",  # You should use the appropriate engine
+                prompt=content,
+                temperature=0.7,
+                max_tokens=300,
             )
-        description = response['choices'][0]['message']['content']
+        description = response.choices[0].text.strip()
         st.subheader("Generated Writeup:")
         st.write(description)
 
