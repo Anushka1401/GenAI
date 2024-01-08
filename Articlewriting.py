@@ -10,7 +10,7 @@ def main():
     if st.button("Generate Article"):
         with st.spinner("Generating Article..."):
             response = openai.Completion.create(
-                engine="text-davinci-003",  # You should use the appropriate engine
+                model="text-davinci-003",  # Use the appropriate engine
                 prompt=content,
                 temperature=0.7,
                 max_tokens=300,
